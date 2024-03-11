@@ -1,6 +1,6 @@
 -- Question: Is International students length of stay affect their Mental health?
 -- Answer: Query the Length of Stay and Avg scores of mental health in Desc order
-CREATE TEMP TABLE df AS
+CREATE TEMP TABLE students AS
 SELECT *
 FROM read_csv_auto('students.csv');
 
@@ -9,7 +9,7 @@ SELECT stay,
 	ROUND(AVG(todep),2) AS average_phq,
 	ROUND(AVG(tosc),2) AS average_scs,
 	ROUND(AVG(toas),2) AS average_as
-FROM df
+FROM students
 WHERE stay IS NOT NULL AND inter_dom = 'Inter' 
 GROUP BY stay
 ORDER BY stay DESC;
